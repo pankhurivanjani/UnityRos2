@@ -10,8 +10,20 @@ OS: Linux and OSX (not tested)
     * https://docs.docker.com/compose/install/
 * Unity3D 2019.3.0f6 (and above)
     * https://docs.unity3d.com/Manual/GettingStartedInstallingHub.html
-* rviz2 (ROS2 dashing)
+* ROS2
     * [Ubuntu/Debian] https://index.ros.org/doc/ros2/Installation/Dashing/Linux-Install-Debians/
+    * Extra packages:
+        * `ros-dashing-rmw-cyclonedds-cpp`
+
+# Setup
+
+Before running rviz2, rqt, rqt_graph (on the host only). This is
+**NOT REQUIRED** for the Unity3D simulator and the Docker containers.
+
+```
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+```
+
 
 # Launch
 
@@ -34,6 +46,7 @@ docker-compose down
 
 ```
 . /opt/ros/dashing/setup.bash
+export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 rviz2
 ```
 
