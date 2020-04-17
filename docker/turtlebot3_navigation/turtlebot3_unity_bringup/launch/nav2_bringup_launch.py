@@ -154,6 +154,34 @@ def generate_launch_description():
         output='screen',
         parameters=[configured_params])
 
+    start_ekf_odom_cmd = launch_ros.actions.Node(
+        package='robot_localization',
+        node_executable='ekf_node',
+        node_name='ekf_odom',
+        output='screen',
+        parameters=[configured_params],
+        remappings=[('odometry/filtered', 'odometry/filtered_twist')])
+
+    start_ekf_map_cmd = launch_ros.actions.Node(
+        package='robot_localization',
+        node_executable='ekf_node',
+        node_name='ekf_map',
+        output='screen',
+        parameters=[configured_params],
+        remappings=[('odometry/filtered', 'odometry/filtered_map')])
+
+    start_navsat_transform_cmd = launch_ros.actions.Node(
+        package='robot_localization',
+        node_executable='navsat_transform_node',
+        node_name='navsat_transform',
+        output='screen',
+        parameters=[configured_params],
+        remappings=[
+            ('imu/data', 'imu'),
+            ('gps/fix', 'gps'),
+            ('odometry/filtered', 'odometry/filtered_twist')
+        ])
+
     # Create the launch description and populate
     ld = launch.LaunchDescription()
 
@@ -178,5 +206,9 @@ def generate_launch_description():
     ld.add_action(start_planner_cmd)
     ld.add_action(start_recovery_cmd)
     ld.add_action(start_navigator_cmd)
+
+    ld.add_action(start_ekf_odom_cmd)
+    ld.add_action(start_ekf_map_cmd)
+    ld.add_action(start_navsat_transform_cmd)
 
     return ld

@@ -25,3 +25,15 @@ repositories:
     type: git
     url: https://github.com/ros-perception/vision_opencv.git
     version: dashing
+  robot_localization:
+    type: git
+    url: https://github.com/cra-ros-pkg/robot_localization.git
+    version: dashing-devel
+  diagnostics:
+    type: git
+    url: https://github.com/ros/diagnostics.git
+    version: dashing
+  geographic_info:
+    type: git
+    url: https://github.com/ros-geographic-info/geographic_info.git
+    version: ros2

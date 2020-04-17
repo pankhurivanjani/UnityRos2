@@ -182,3 +182,43 @@ robot_state_publisher:
 world_model:
   ros__parameters:
     use_sim_time: True
+
+ekf_odom:
+  ros__parameters:
+    use_sim_time: True
+    frequency: 10.0
+    sensor_timeout: 0.2
+    two_d_mode: True
+    publish_tf: False
+    map_frame: "map"
+    odom_frame: "odom"
+    base_link_frame: "base_footprint"
+    world_frame: "odom"
+    twist0: "velocity"
+    twist0_config: [false, false, false, false, false, false, true, true, false, false, false, true, false, false, false]
+
+ekf_map:
+  ros__parameters:
+    use_sim_time: True
+    frequency: 10.0
+    sensor_timeout: 0.2
+    two_d_mode: True
+    publish_tf: False
+    map_frame: "map"
+    odom_frame: "odom"
+    base_link_frame: "base_footprint"
+    world_frame: "map"
+    odom0: "odometry/gps"
+    odom0_config: [true, true, false, false, false, false, false, false, false, false, false, false, false, false, false]
+    imu0: "imu"
+    imu0_config: [false, false, false, false, false, true, false, false, false, false, false, true, false, false, false]
+
+navsat_transform:
+  ros__parameters:
+    use_sim_time: True
+    frequency: 10.0
+    sensor_timeout: 0.2
+    two_d_mode: True
+    publish_tf: False
+    wait_for_datum: True
+    datum: [1.3521, 103.8198, 0.0]
