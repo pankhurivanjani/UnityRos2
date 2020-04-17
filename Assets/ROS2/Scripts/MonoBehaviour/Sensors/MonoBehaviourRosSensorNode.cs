@@ -4,7 +4,7 @@ using rclcs;
 using ROS2.Interfaces;
 using UnityEngine;
 
-public abstract class StandardMonoBehaviourRosNode<T> : MonoBehaviourRosNode where T : Message, new()
+public abstract class MonoBehaviourRosSensorNode<T> : MonoBehaviourRosNode where T : Message, new()
 {
     public string NodeName;
     public string Topic;

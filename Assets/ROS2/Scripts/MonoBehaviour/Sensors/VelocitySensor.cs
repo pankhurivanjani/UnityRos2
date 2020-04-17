@@ -1,7 +1,8 @@
+using geometry_msgs.msg;
 using rclcs;
 using UnityEngine;
 
-public class VelocitySensor : StandardMonoBehaviourRosNode<geometry_msgs.msg.Twist>
+public class VelocitySensor : MonoBehaviourRosSensorNode<TwistWithCovarianceStamped>
 {
     private TwistBaseController twistBaseController;
 
@@ -16,16 +17,23 @@ public class VelocitySensor : StandardMonoBehaviourRosNode<geometry_msgs.msg.Twi
         base.StartRos();
     }
 
-    protected override geometry_msgs.msg.Twist Read()
+    protected override TwistWithCovarianceStamped Read()
     {
         if (twistBaseController == null)
         {
             return null;
         }
 
-        geometry_msgs.msg.Twist twist = new geometry_msgs.msg.Twist();
+        TwistWithCovarianceStamped twistWithCovarianceStamped = new TwistWithCovarianceStamped();
+        twistWithCovarianceStamped.Header.Update(clock);
+        twistWithCovarianceStamped.Header.Frame_id = "base_footprint";
+
+        TwistWithCovariance twistWithCovariance = twistWithCovarianceStamped.Twist;
+
+        Twist twist = twistWithCovariance.Twist;
         twist.Linear.Unity2Ros(twistBaseController.commandVelocityLinear);
         twist.Angular.Unity2Ros(twistBaseController.commandVelocityAngular);
-        return twist;
+
+        return twistWithCovarianceStamped;
     }
 }

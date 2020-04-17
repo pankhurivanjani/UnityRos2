@@ -1,12 +1,20 @@
+using geometry_msgs.msg;
 using rclcs;
 
-public class PositionSensor : StandardMonoBehaviourRosNode<geometry_msgs.msg.Pose>
+public class PositionSensor : MonoBehaviourRosSensorNode<PoseWithCovarianceStamped>
 {
-    protected override geometry_msgs.msg.Pose Read()
+    protected override PoseWithCovarianceStamped Read()
     {
-        geometry_msgs.msg.Pose pose = new geometry_msgs.msg.Pose();
+        PoseWithCovarianceStamped poseWithCovarianceStamped = new PoseWithCovarianceStamped();
+        poseWithCovarianceStamped.Header.Update(clock);
+        poseWithCovarianceStamped.Header.Frame_id = "base_footprint";
+
+        PoseWithCovariance poseWithCovariance = poseWithCovarianceStamped.Pose;
+
+        Pose pose = poseWithCovariance.Pose;
         pose.Position.Unity2Ros(transform.position);
         pose.Orientation.Unity2Ros(transform.rotation);
-        return pose;
+        
+        return poseWithCovarianceStamped;
     }
 }
