@@ -107,12 +107,12 @@ def generate_launch_description():
         output='screen',
         parameters=[configured_params])
 
-    start_localizer_cmd = launch_ros.actions.Node(
-        package='nav2_amcl',
-        node_executable='amcl',
-        node_name='amcl',
-        output='screen',
-        parameters=[configured_params])
+    #start_localizer_cmd = launch_ros.actions.Node(
+    #    package='nav2_amcl',
+    #    node_executable='amcl',
+    #    node_name='amcl',
+    #    output='screen',
+    #    parameters=[configured_params])
 
     start_world_model_cmd = launch_ros.actions.Node(
         package='nav2_world_model',
@@ -200,7 +200,7 @@ def generate_launch_description():
 
     ld.add_action(start_lifecycle_manager_cmd)
     ld.add_action(start_map_server_cmd)
-    ld.add_action(start_localizer_cmd)
+    #ld.add_action(start_localizer_cmd)
     ld.add_action(start_world_model_cmd)
     ld.add_action(start_dwb_cmd)
     ld.add_action(start_planner_cmd)

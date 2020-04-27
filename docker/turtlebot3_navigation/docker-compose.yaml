@@ -10,4 +10,6 @@ services:
     environment:
       - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 
-    command: ros2 launch turtlebot3_unity_bringup nav2_bringup_launch.py
+    command: >
+        bash -c "pwd
+        && ros2 launch turtlebot3_unity_bringup nav2_bringup_launch.py"
