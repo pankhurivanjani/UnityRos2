@@ -24,6 +24,13 @@ Before running rviz2, rqt, rqt_graph (on the host only). This is
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 ```
 
+Unset the ROS_DOMAIN_ID (**Optional in case of errors**)
+
+```
+unset ROS_DOMAIN_ID
+
+```
+
 
 # Launch
 
@@ -67,3 +74,12 @@ rviz2
 * Press the `Play` button.
 * In the `Hierarchy` panel, select `map`, `NavigationGoal`.
     * Move this entity (or change its position via the `Inspector`) and click `Send Navigation Goal` to send a nagivation goal.
+
+## For working with new maps including geofence
+
+* Give gps points in i3.json
+
+* Run geofenceROS2.py
+
+* Use the generated .pgm file in UnityRos2/docker/turtlebot3_navigation/turtlebot3_unity_bringup/launch/test_map.yaml
+
