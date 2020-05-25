@@ -51,6 +51,7 @@ sudo apt install python3-argcomplete #optional - command autocompletetion
  
 #To run the project, follow instructions on Experiments.md
 
+* Switch to experiment branch in Unity ROS2 from codes
 
 * The docker side will run on jetson nano and unity hub will act as a simulator working on master PC. They should be on same network #not tested
 
